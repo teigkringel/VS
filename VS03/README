@@ -1,0 +1,18 @@
+2011-05-17
+    - nicht vergessen, die Musterlösung zu laden und damit das vsFramework zu aktualisieren.
+    - was bisher steht, ist das Gerüst der SyncProcesses und des Synchronizers; muss nur noch die
+        Channels sauber eintragen können und dann ließe sich der TimeSlice einbauens 
+
+2011-05-1
+
+	- mit udpChannel klappt es bisher nicht, also hab' ich mal die bidirectionalPipe genommen.
+		Es steht noch nicht allzu viel da, aber immerhin ^^
+		Was er macht, ist den Sync zu erstellen un die Pipes dazu, was noch woanders hin ausgelagert werden sollte,
+		dass das kommunikationsunabhängig ist. Bisher schickt der Sync nur die Nachrichten rum und liest dann eine
+		Nachricht, die das ACK sein soll. Lesen müsste er natürlich in einem Thread, obwohl es eher ein Thread pro
+		Channel ist.
+	- der udpChannel wirft unschönerweise einen Fehler (PortUnreachableException), wenn versucht wird in die andere Richtung zu schicken,
+		ich weiß aber noch nicht warum, muss ich noch testen... So getestet: Das Problem tritt nachteilhafterweise nur auf, wenn ein
+		unconnected Channel erstellt wird. D.h. es scheint als fehlte in unserer Implementierung noch etwas (-_-)
+		Nichtsdestotrotz bleiben die Probleme, dass wir schlecht mehrere Verbindungen auf demselben Port abwickeln können, sodass
+		eine UDP-Implementierung noch einen Port pro Client belegen würde. Das erscheint mir ziemlich ungünstig...
