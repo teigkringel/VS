@@ -16,7 +16,7 @@ public class TestClass {
 	 */
 	public static void main(String[] args) throws UnknownHostException {
 		// at first we do some test, in order to develop a synchronizer system
-		Synchronizer sync = new Synchronizer(1,2);
+		Synchronizer sync = new Synchronizer();
 		SyncProcess p1 = new SyncProcess(1);	// Test process 1
 		SyncProcess p2 = new SyncProcess(2);	// Test process 2
 		

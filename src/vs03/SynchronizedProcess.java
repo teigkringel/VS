@@ -1,5 +1,7 @@
 package vs03;
 
+import java.util.concurrent.LinkedBlockingQueue;
+
 import vsFramework.Channel;
 
 /*
@@ -19,13 +21,15 @@ public interface SynchronizedProcess {
 	/**
 	 * 
 	 */
+	public int getId(); //it is necessary to create a Constructor with at least one parameter for the Id
+	
 	public void sync_stateChange();
 
 	public void set_out_nbr(Channel channel);
 	
-	public void get_out_nbr(Channel channel);
+	public LinkedBlockingQueue<Channel> get_out_nbr(Channel channel) ;
 
 	public void set_in_nbr(Channel channel);
 	
-	public void get_in_nbr(Channel channel);
+	public LinkedBlockingQueue<Channel> get_in_nbr(Channel channel);
 }

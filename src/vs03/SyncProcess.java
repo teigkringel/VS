@@ -6,12 +6,12 @@ import vsFramework.ByteArrayMessage;
 import vsFramework.Channel;
 import vsFramework.Message;
 
-public class SyncProcess
+public abstract class SyncProcess
 	implements Runnable, SynchronizedProcess
 {
 	public Channel comChannel;	// for now it's public, may be changed later
-	public LinkedBlockingQueue<Channel> out_nbrs;
-	public LinkedBlockingQueue<Channel> in_nbrs;
+	private LinkedBlockingQueue<Channel> out_nbrs;
+	private LinkedBlockingQueue<Channel> in_nbrs;
 	
 	int id; 
 	
@@ -56,44 +56,41 @@ public class SyncProcess
 	}
 //=============================Abstract Methods==============================================
 	@Override
-	public void sync_recv() {
-		// TODO Auto-generated method stub
-		System.out.println("recv");
-	}
+	public abstract void sync_recv();
 
 	@Override
-	public void sync_send() {
-		// TODO Auto-generated method stub
-		System.out.println("send");
-	}
+	public abstract void sync_send();
 
 	@Override
-	public void sync_stateChange() {
-		// TODO Auto-generated method stub
-		System.out.println("stateChange");
-	}
+	public abstract void sync_stateChange(); 
 //=============================Getter and Setter==============================================
 	@Override
 	public void set_in_nbr(Channel channel) {
-		// TODO Auto-generated method stub
+		 
+		in_nbrs.add(channel);
 		
 	}
 
 	@Override
 	public void set_out_nbr(Channel channel) {
-		// TODO Auto-generated method stub
 		
+		out_nbrs.add(channel);
 	}
 
 	@Override
-	public void get_in_nbr(Channel channel) {
-		// TODO Auto-generated method stub
-		
+	public  LinkedBlockingQueue<Channel> get_in_nbr(Channel channel){
+		return in_nbrs; 
 	}
 
 	@Override
-	public void get_out_nbr(Channel channel) {
-		// TODO Auto-generated method stub
+	public  LinkedBlockingQueue<Channel> get_out_nbr(Channel channel){
+		return out_nbrs; 
+		
+	}
+	
+	public int getId(){
+		
+		return this.id;
 		
 	}
 
