@@ -17,11 +17,17 @@ public abstract class SyncProcess
 	
 	public SyncProcess (int id) {
 		in_nbrs = new LinkedBlockingQueue<Channel>();
-		
+		out_nbrs = new LinkedBlockingQueue<Channel>();
 		this.id = id;
 	}
 	
 	public void run () {
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		while (true) {
 			Message msg = comChannel.recv();
 			
@@ -78,12 +84,12 @@ public abstract class SyncProcess
 	}
 
 	@Override
-	public  LinkedBlockingQueue<Channel> get_in_nbr(Channel channel){
+	public  LinkedBlockingQueue<Channel> get_in_nbr(){
 		return in_nbrs; 
 	}
 
 	@Override
-	public  LinkedBlockingQueue<Channel> get_out_nbr(Channel channel){
+	public  LinkedBlockingQueue<Channel> get_out_nbr(){
 		return out_nbrs; 
 		
 	}

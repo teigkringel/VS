@@ -27,9 +27,9 @@ public interface SynchronizedProcess {
 
 	public void set_out_nbr(Channel channel);
 	
-	public LinkedBlockingQueue<Channel> get_out_nbr(Channel channel) ;
+	public LinkedBlockingQueue<Channel> get_out_nbr() ;
 
 	public void set_in_nbr(Channel channel);
 	
-	public LinkedBlockingQueue<Channel> get_in_nbr(Channel channel);
+	public LinkedBlockingQueue<Channel> get_in_nbr();
 }

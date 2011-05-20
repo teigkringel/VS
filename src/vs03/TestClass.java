@@ -4,6 +4,7 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.UnknownHostException;
 
+import timeSlice.TimeSliceProcess;
 import vsFramework.UdpChannel;
 import vsFramework.UdpChannelFactory;
 import vsFramework.BidirectionalPipe;
@@ -17,8 +18,8 @@ public class TestClass {
 	public static void main(String[] args) throws UnknownHostException {
 		// at first we do some test, in order to develop a synchronizer system
 		Synchronizer sync = new Synchronizer();
-		SyncProcess p1 = new SyncProcess(1);	// Test process 1
-		SyncProcess p2 = new SyncProcess(2);	// Test process 2
+		SyncProcess p1 = new TimeSliceProcess(1);	// Test process 1
+		SyncProcess p2 = new TimeSliceProcess(2);	// Test process 2
 		
 		// create Communication Channels
 		BidirectionalPipe pp1 = new BidirectionalPipe();
